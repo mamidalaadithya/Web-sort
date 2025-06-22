@@ -4,17 +4,11 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const [mobileView, setMobileView] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setMobileView(window.innerWidth < 992);
-    };
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      // Section detection
+
       const sections = ['home', 'about', 'services', 'industries', 'careers', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -28,11 +22,8 @@ function App() {
       }
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -52,7 +43,6 @@ function App() {
     }
   };
 
-  // Services data
   const services = [
     {
       id: 1,
@@ -74,7 +64,6 @@ function App() {
     }
   ];
 
-  // Industries data
   const industries = [
     {
       id: 1,
@@ -93,30 +82,6 @@ function App() {
     }
   ];
 
-  // Clients data
-  const clients = [
-    {
-      id: 1,
-      name: "Client 1",
-      logo: "https://via.placeholder.com/150x60.png?text=Client+1"
-    },
-    {
-      id: 2,
-      name: "Client 2",
-      logo: "https://via.placeholder.com/150x60.png?text=Client+2"
-    },
-    {
-      id: 3,
-      name: "Client 3",
-      logo: "https://via.placeholder.com/150x60.png?text=Client+3"
-    },
-    {
-      id: 4,
-      name: "Client 4",
-      logo: "https://via.placeholder.com/150x60.png?text=Client+4"
-    }
-  ];
-
   return (
     <div className="App">
       {/* Navigation */}
@@ -124,7 +89,7 @@ function App() {
         <div className="container">
           <div className="logo">
             <span className="logo-text">Web Sort</span>
-            <span className="tagline">Your Vision Our Design</span>
+            <span className="tagline"> Your Vision Our Design</span>
           </div>
           <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
             <div 
@@ -194,19 +159,6 @@ function App() {
                 Contact Us
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Clients Section */}
-      <section className="clients">
-        <div className="container">
-          <div className="clients-grid">
-            {clients.map(client => (
-              <div className="client-logo-container" key={client.id}>
-                <img src={client.logo} alt={client.name} className="client-logo" />
-              </div>
-            ))}
           </div>
         </div>
       </section>
